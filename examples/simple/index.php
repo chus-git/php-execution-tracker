@@ -43,6 +43,8 @@ function add($addend1, $addend2)
 
     $result = $addend1 + $addend2;
 
+    usleep(200000);
+
     $procedure->end("The result is $result");
 
     return $result;
@@ -52,5 +54,4 @@ function add($addend1, $addend2)
 power(2, 4);
 
 $mainProcedure = ExecutionTracker::getMainProcedure();
-
-echo json_encode($mainProcedure, JSON_PRETTY_PRINT);
+echo $mainProcedure->asJsonReduced();
