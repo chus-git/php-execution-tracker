@@ -1,0 +1,61 @@
+{
+    "name": "Exponentiation of 2 to the power of 4",
+    "result": "The result is 16",
+    "startTime": 1705674866.380619,
+    "endTime": 1705674866.380643,
+    "errorOccurred": false,
+    "warningOccurred": false,
+    "errors": [],
+    "warnings": [],
+    "logs": [],
+    "subProcedures": [
+        {
+            "name": "Multiplication of 1 by 2",
+            "result": "The result is 2",
+            "startTime": 1705674866.380628,
+            "endTime": 1705674866.380637,
+            "errorOccurred": false,
+            "warningOccurred": false,
+            "errors": [],
+            "warnings": [],
+            "logs": [],
+            "subProcedures": []
+        },
+        {
+            "name": "Multiplication of 2 by 2",
+            "result": "The result is 4",
+            "startTime": 1705674866.380638,
+            "endTime": 1705674866.380639,
+            "errorOccurred": false,
+            "warningOccurred": false,
+            "errors": [],
+            "warnings": [],
+            "logs": [],
+            "subProcedures": []
+        },
+        {
+            "name": "Multiplication of 4 by 2",
+            "result": "The result is 8",
+            "startTime": 1705674866.38064,
+            "endTime": 1705674866.380641,
+            "errorOccurred": false,
+            "warningOccurred": false,
+            "errors": [],
+            "warnings": [],
+            "logs": [],
+            "subProcedures": []
+        },
+        {
+            "name": "Multiplication of 8 by 2",
+            "result": "The result is 16",
+            "startTime": 1705674866.380642,
+            "endTime": 1705674866.380643,
+            "errorOccurred": false,
+            "warningOccurred": false,
+            "errors": [],
+            "warnings": [],
+            "logs": [],
+            "subProcedures": []
+        }
+    ]
+}

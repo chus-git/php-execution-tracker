@@ -1,0 +1,23 @@
+{
+    "name": "chus/mi_paquete",
+    "description": "an execution tracker",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Chus",
+            "email": "jelorenzogal@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "chus\\php-execution-tracker\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "chus\\php-execution-tracker\\tests\\": "tests/"
+        }
+    }
+}
