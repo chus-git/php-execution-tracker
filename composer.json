@@ -1,6 +1,6 @@
 {
-    "name": "chus/mi_paquete",
-    "description": "an execution tracker",
+    "name": "chus/php-execution-tracker",
+    "description": "a PHP process execution tracker",
     "type": "library",
     "license": "MIT",
     "authors": [

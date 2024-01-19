@@ -54,4 +54,5 @@ function add($addend1, $addend2)
 power(2, 4);
 
 $mainProcedure = ExecutionTracker::getMainProcedure();
+
 echo $mainProcedure->asJsonReduced();
