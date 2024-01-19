@@ -2,7 +2,7 @@
 
 A PHP library to track the execution of a process. It allows you to track the time difference between processes, debug, logs, warnings and errors.
 
-> This library is still in development and is not ready for production.
+> Important: Currently, I use this same library in production, but it is still subject to potential significant changes due to the early version it is in.
 
 ## Usage
 
