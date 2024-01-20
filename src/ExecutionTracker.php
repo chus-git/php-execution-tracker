@@ -1,5 +1,7 @@
 <?php
 
+namespace ExecutionTracker;
+
 require_once "Procedure.php";
 
 class ExecutionTracker

@@ -1,5 +1,7 @@
 <?php
 
+namespace ExecutionTracker;
+
 class Procedure
 {
 
