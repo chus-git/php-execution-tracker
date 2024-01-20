@@ -4,7 +4,7 @@ namespace ExecutionTracker;
 
 require_once "Procedure.php";
 
-class ExecutionTracker
+class Tracker
 {
 
     /** @var Procedure */
