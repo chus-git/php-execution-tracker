@@ -6,6 +6,12 @@ A PHP library to track the execution of a process. It allows you to track the ti
 
 ## Usage
 
+Install the library using composer:
+
+```bash
+composer require chus/php-execution-tracker
+```
+
 ```php
 <?php
 
