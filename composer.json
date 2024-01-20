@@ -12,12 +12,12 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "Chus\\ExecutionTracker": "src/"
+            "Chus\\ExecutionTracker\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Chus\\ExecutionTracker\\Tests": "tests/"
+            "Chus\\ExecutionTracker\\Tests\\": "tests/"
         }
     }
 }
