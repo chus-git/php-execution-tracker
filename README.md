@@ -9,7 +9,9 @@ A PHP library to track the execution of a process. It allows you to track the ti
 ```php
 <?php
 
-require_once "../../src/ExecutionTracker.php";
+require_once __DIR__ . '/vendor/autoload.php';
+
+use ExecutionTracker/Tracker;
 
 function power($base, $exponent)
 {
