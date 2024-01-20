@@ -2,7 +2,7 @@
 
 namespace ExecutionTracker;
 
-class Procedure
+class Track
 {
 
     /** @var string */
@@ -32,8 +32,8 @@ class Procedure
     /** @var string[] */
     public $logs = [];
 
-    /** @var Procedure[] */
-    public $subProcedures = [];
+    /** @var Track[] */
+    public $subTracks = [];
 
     public function __construct($name)
     {
@@ -45,7 +45,7 @@ class Procedure
     /**
      * @param string $error
      */
-    public function addError($error)
+    public function error($error)
     {
         $this->errorOccurred = true;
         $this->errors[] = $error;
@@ -54,7 +54,7 @@ class Procedure
     /**
      * @param string $warning
      */
-    public function addWarning($warning)
+    public function warning($warning)
     {
         $this->warningOccurred = true;
         $this->warnings[] = $warning;
@@ -75,7 +75,7 @@ class Procedure
      */
     public function withError($error)
     {
-        $this->addError($error);
+        $this->error($error);
     }
 
     /**
@@ -83,7 +83,7 @@ class Procedure
      */
     public function withWarning($warning)
     {
-        $this->addWarning($warning);
+        $this->warning($warning);
     }
 
     /**
@@ -95,11 +95,11 @@ class Procedure
     }
 
     /**
-     * @param Procedure $subProcedure
+     * @param Track $subTrack
      */
-    public function addSubProcedure($subProcedure)
+    public function addSubTrack($subTrack)
     {
-        $this->subProcedures[] = $subProcedure;
+        $this->subTracks[] = $subTrack;
     }
 
     public function isFinished()
@@ -109,7 +109,7 @@ class Procedure
 
     private function clone()
     {
-        $clone = new Procedure($this->name);
+        $clone = new Track($this->name);
         $clone->result = $this->result;
         $clone->startTime = $this->startTime;
         $clone->endTime = $this->endTime;
@@ -118,7 +118,7 @@ class Procedure
         $clone->errors = $this->errors;
         $clone->warnings = $this->warnings;
         $clone->logs = $this->logs;
-        $clone->subProcedures = $this->subProcedures;
+        $clone->subTracks = $this->subTracks;
         return $clone;
     }
 
@@ -146,8 +146,8 @@ class Procedure
             unset($clone["endTime"]);
         }
 
-        foreach ($clone["subProcedures"] as $subProcedureKey => $subProcedure) {
-            $clone["subProcedures"][$subProcedureKey] = $subProcedure->asReduced();
+        foreach ($clone["subTracks"] as $subTrackKey => $subTrack) {
+            $clone["subTracks"][$subTrackKey] = $subTrack->asReduced();
         }
 
         foreach ($clone as $key => $value) {
@@ -165,4 +165,5 @@ class Procedure
     {
         return get_object_vars($this);
     }
+
 }

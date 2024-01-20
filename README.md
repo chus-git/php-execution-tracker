@@ -14,7 +14,7 @@ require_once "../../src/ExecutionTracker.php";
 function power($base, $exponent)
 {
 
-    $procedure = ExecutionTracker::beginProcedure("Exponentiation of $base to the power of $exponent");
+    $track = ExecutionTracker::track("Exponentiation of $base to the power of $exponent");
 
     $result = 1;
 
@@ -22,7 +22,7 @@ function power($base, $exponent)
         $result = multiply($result, $base);
     }
 
-    $procedure->end("The result is $result");
+    $track->end("The result is $result");
 
     return $result;
 
@@ -31,7 +31,7 @@ function power($base, $exponent)
 function multiply($factor1, $factor2)
 {
 
-    $procedure = ExecutionTracker::beginProcedure(
+    $track = ExecutionTracker::track(
         "Multiplication of $factor1 by $factor2"
     );
 
@@ -41,7 +41,7 @@ function multiply($factor1, $factor2)
         $result = add($result, $factor1);
     }
 
-    $procedure->end("The result is $result");
+    $track->end("The result is $result");
 
     return $result;
 
@@ -50,7 +50,7 @@ function multiply($factor1, $factor2)
 function add($addend1, $addend2)
 {
 
-    $procedure = ExecutionTracker::beginProcedure(
+    $track = ExecutionTracker::track(
         "Addition of $addend1 and $addend2
     ");
 
@@ -58,7 +58,7 @@ function add($addend1, $addend2)
 
     usleep(200000);
 
-    $procedure->end("The result is $result");
+    $track->end("The result is $result");
 
     return $result;
 
@@ -66,9 +66,9 @@ function add($addend1, $addend2)
 
 power(2, 4);
 
-$mainProcedure = ExecutionTracker::getMainProcedure();
+$mainTrack = ExecutionTracker::getMainTrack();
 
-echo $mainProcedure->asJsonReduced();
+echo $mainTrack->asJsonReduced();
 ```
 
 Output:
@@ -79,11 +79,11 @@ Output:
     "result": "The result is 16",
     "startTime": 1705694473.75968,
     "endTime": 1705694475.421149,
-    "subProcedures": [
+    "subTracks": [
         {
             "name": "Multiplication of 1 by 2",
             "result": "The result is 2",
-            "subProcedures": [
+            "subTracks": [
                 {
                     "name": "Addition of 0 and 1",
                     "result": "The result is 1"
@@ -97,7 +97,7 @@ Output:
         {
             "name": "Multiplication of 2 by 2",
             "result": "The result is 4",
-            "subProcedures": [
+            "subTracks": [
                 {
                     "name": "Addition of 0 and 2",
                     "result": "The result is 2"
@@ -111,7 +111,7 @@ Output:
         {
             "name": "Multiplication of 4 by 2",
             "result": "The result is 8",
-            "subProcedures": [
+            "subTracks": [
                 {
                     "name": "Addition of 0 and 4",
                     "result": "The result is 4"
@@ -125,7 +125,7 @@ Output:
         {
             "name": "Multiplication of 8 by 2",
             "result": "The result is 16",
-            "subProcedures": [
+            "subTracks": [
                 {
                     "name": "Addition of 0 and 8",
                     "result": "The result is 8"

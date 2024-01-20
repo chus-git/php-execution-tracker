@@ -1,13 +1,13 @@
 {
-    "name": "Exponentiation of 2 to the power of 4",
-    "result": "The result is 16",
-    "startTime": 1705694473.75968,
-    "endTime": 1705694475.421149,
-    "subProcedures": [
+    "name": "Exponentiation of 2 to the power of 3\r\n    ",
+    "result": "The result is 8",
+    "startTime": 1705766393.681143,
+    "endTime": 1705766394.908553,
+    "subTracks": [
         {
-            "name": "Multiplication of 1 by 2",
+            "name": "Multiplication of 1 by 2\r\n    ",
             "result": "The result is 2",
-            "subProcedures": [
+            "subTracks": [
                 {
                     "name": "Addition of 0 and 1",
                     "result": "The result is 1"
@@ -19,9 +19,9 @@
             ]
         },
         {
-            "name": "Multiplication of 2 by 2",
+            "name": "Multiplication of 2 by 2\r\n    ",
             "result": "The result is 4",
-            "subProcedures": [
+            "subTracks": [
                 {
                     "name": "Addition of 0 and 2",
                     "result": "The result is 2"
@@ -33,9 +33,9 @@
             ]
         },
         {
-            "name": "Multiplication of 4 by 2",
+            "name": "Multiplication of 4 by 2\r\n    ",
             "result": "The result is 8",
-            "subProcedures": [
+            "subTracks": [
                 {
                     "name": "Addition of 0 and 4",
                     "result": "The result is 4"
@@ -43,20 +43,6 @@
                 {
                     "name": "Addition of 4 and 4",
                     "result": "The result is 8"
-                }
-            ]
-        },
-        {
-            "name": "Multiplication of 8 by 2",
-            "result": "The result is 16",
-            "subProcedures": [
-                {
-                    "name": "Addition of 0 and 8",
-                    "result": "The result is 8"
-                },
-                {
-                    "name": "Addition of 8 and 8",
-                    "result": "The result is 16"
                 }
             ]
         }

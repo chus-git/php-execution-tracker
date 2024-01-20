@@ -2,60 +2,60 @@
 
 namespace ExecutionTracker;
 
-require_once "Procedure.php";
+require_once "Track.php";
 
 class Tracker
 {
 
-    /** @var Procedure */
-    private static $mainProcedure;
+    /** @var Track */
+    private static $mainTrack;
 
-    /** @var Procedure[] */
-    private static $procedures = [];
+    /** @var Track[] */
+    private static $tracks = [];
 
     /**
      * @param string $name
      * 
-     * @return Procedure The new procedure
+     * @return Track The new track
      */
-    public static function beginProcedure($name)
+    public static function track($name)
     {
 
-        $procedure = new Procedure($name);
+        $track = new Track($name);
 
-        if (!self::$mainProcedure) {
-            self::$mainProcedure = $procedure;
+        if (!self::$mainTrack) {
+            self::$mainTrack = $track;
         }
 
-        $parentProcedure = end(self::$procedures);
+        $parentTrack = end(self::$tracks);
 
-        while ($parentProcedure && $parentProcedure->isFinished()) {
-            $parentProcedure = self::$procedures[array_search($parentProcedure, self::$procedures) - 1];
+        while ($parentTrack && $parentTrack->isFinished()) {
+            $parentTrack = self::$tracks[array_search($parentTrack, self::$tracks) - 1];
         }
 
-        if ($parentProcedure) {
-            $parentProcedure->subProcedures[] = $procedure;
+        if ($parentTrack) {
+            $parentTrack->subTracks[] = $track;
         }
 
-        self::$procedures[] = $procedure;
+        self::$tracks[] = $track;
 
-        return $procedure;
+        return $track;
     }
 
     /**
-     * @return Procedure The main procedure
+     * @return Track The main track
      */
-    public static function getMainProcedure()
+    public static function getMainTrack()
     {
-        return self::$mainProcedure;
+        return self::$mainTrack;
     }
 
     /**
-     * Clear all procedures
+     * Clear all tracks
      */
     public static function clear()
     {
-        self::$procedures = [];
+        self::$tracks = [];
     }
 
 }
