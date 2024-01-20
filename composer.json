@@ -12,12 +12,12 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "chus\\php-execution-tracker\\": "src/"
+            "Chus\\ExecutionTracker": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "chus\\php-execution-tracker\\tests\\": "tests/"
+            "Chus\\ExecutionTracker\\Tests": "tests/"
         }
     }
 }
