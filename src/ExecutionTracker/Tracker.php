@@ -43,7 +43,7 @@ class Tracker
     }
 
     /**
-     * @return Trace The main track
+     * @return Trace The main trace
      */
     public static function getMainTrace()
     {
@@ -51,11 +51,19 @@ class Tracker
     }
 
     /**
-     * Clear all tracks
+     * Clear all traces
      */
     public static function clear()
     {
         self::$traces = [];
+    }
+
+    /**
+     * @return Trace The current trace
+     */
+    public static function getCurrentTrace()
+    {
+        return end(self::$traces);
     }
 
 }
