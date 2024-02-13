@@ -2,7 +2,7 @@
 
 namespace ExecutionTracker;
 
-class Track
+class Trace
 {
 
     /** @var string */
@@ -32,8 +32,8 @@ class Track
     /** @var string[] */
     public $logs = [];
 
-    /** @var Track[] */
-    public $subTracks = [];
+    /** @var Trace[] */
+    public $subTraces = [];
 
     public function __construct($name)
     {
@@ -95,11 +95,11 @@ class Track
     }
 
     /**
-     * @param Track $subTrack
+     * @param Trace $subTrace
      */
-    public function addSubTrack($subTrack)
+    public function addSubTrace($subTrace)
     {
-        $this->subTracks[] = $subTrack;
+        $this->subTraces[] = $subTrace;
     }
 
     public function isFinished()
@@ -109,7 +109,7 @@ class Track
 
     private function clone()
     {
-        $clone = new Track($this->name);
+        $clone = new Trace($this->name);
         $clone->result = $this->result;
         $clone->startTime = $this->startTime;
         $clone->endTime = $this->endTime;
@@ -118,7 +118,7 @@ class Track
         $clone->errors = $this->errors;
         $clone->warnings = $this->warnings;
         $clone->logs = $this->logs;
-        $clone->subTracks = $this->subTracks;
+        $clone->subTraces = $this->subTraces;
         return $clone;
     }
 
@@ -146,9 +146,10 @@ class Track
             unset($clone["endTime"]);
         }
 
-        foreach ($clone["subTracks"] as $subTrackKey => $subTrack) {
-            $clone["subTracks"][$subTrackKey] = $subTrack->asReduced();
-        }
+        if($clone["subTraces"])
+            foreach ($clone["subTraces"] as $subTraceKey => $subTrace) {
+                $clone["subTraces"][$subTraceKey] = $subTrace->asReduced();
+            }
 
         foreach ($clone as $key => $value) {
 

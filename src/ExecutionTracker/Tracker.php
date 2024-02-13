@@ -2,52 +2,52 @@
 
 namespace ExecutionTracker;
 
-require_once "Track.php";
+require_once "Trace.php";
 
 class Tracker
 {
 
-    /** @var Track */
-    private static $mainTrack;
+    /** @var Trace */
+    private static $mainTrace;
 
-    /** @var Track[] */
-    private static $tracks = [];
+    /** @var Trace[] */
+    private static $traces = [];
 
     /**
      * @param string $name
      * 
-     * @return Track The new track
+     * @return Trace The new trace
      */
     public static function track($name)
     {
 
-        $track = new Track($name);
+        $trace = new Trace($name);
 
-        if (!self::$mainTrack) {
-            self::$mainTrack = $track;
+        if (!self::$mainTrace) {
+            self::$mainTrace = $trace;
         }
 
-        $parentTrack = end(self::$tracks);
+        $parentTrace = end(self::$traces);
 
-        while ($parentTrack && $parentTrack->isFinished()) {
-            $parentTrack = self::$tracks[array_search($parentTrack, self::$tracks) - 1];
+        while ($parentTrace && $parentTrace->isFinished()) {
+            $parentTrace = self::$traces[array_search($parentTrace, self::$traces) - 1];
         }
 
-        if ($parentTrack) {
-            $parentTrack->subTracks[] = $track;
+        if ($parentTrace) {
+            $parentTrace->subTraces[] = $trace;
         }
 
-        self::$tracks[] = $track;
+        self::$traces[] = $trace;
 
-        return $track;
+        return $trace;
     }
 
     /**
-     * @return Track The main track
+     * @return Trace The main track
      */
-    public static function getMainTrack()
+    public static function getMainTrace()
     {
-        return self::$mainTrack;
+        return self::$mainTrace;
     }
 
     /**
@@ -55,7 +55,7 @@ class Tracker
      */
     public static function clear()
     {
-        self::$tracks = [];
+        self::$traces = [];
     }
 
 }

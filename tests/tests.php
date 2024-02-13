@@ -59,6 +59,6 @@ function add($addend1, $addend2)
 
 power(2, 3);
 
-$mainTrack = Tracker::getMainTrack();
+$mainTrack = Tracker::getMainTrace();
 
 echo $mainTrack->asJsonReduced();
