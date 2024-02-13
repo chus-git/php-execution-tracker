@@ -162,7 +162,7 @@ class Trace
         return $clone;
     }
 
-    private function asArray()
+    public function asArray()
     {
         return get_object_vars($this);
     }

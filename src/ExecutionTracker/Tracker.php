@@ -55,6 +55,7 @@ class Tracker
      */
     public static function clear()
     {
+        self::$mainTrace = null;
         self::$traces = [];
     }
 
