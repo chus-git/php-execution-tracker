@@ -1,5 +1,6 @@
 {
     "name": "chus/php-execution-tracker",
+    "version": "1.0.0",
     "description": "a PHP process execution tracker",
     "type": "library",
     "license": "MIT",
