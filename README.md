@@ -74,7 +74,7 @@ function add($addend1, $addend2)
 
 power(2, 4);
 
-$mainTrack = Tracker::getMainTrack();
+$mainTrack = Tracker::getMainTrace();
 
 echo $mainTrack->asJsonReduced();
 ```
@@ -87,11 +87,11 @@ Output:
     "result": "The result is 16",
     "startTime": 1705694473.75968,
     "endTime": 1705694475.421149,
-    "subTracks": [
+    "subTraces": [
         {
             "name": "Multiplication of 1 by 2",
             "result": "The result is 2",
-            "subTracks": [
+            "subTraces": [
                 {
                     "name": "Addition of 0 and 1",
                     "result": "The result is 1"
@@ -105,7 +105,7 @@ Output:
         {
             "name": "Multiplication of 2 by 2",
             "result": "The result is 4",
-            "subTracks": [
+            "subTraces": [
                 {
                     "name": "Addition of 0 and 2",
                     "result": "The result is 2"
@@ -119,7 +119,7 @@ Output:
         {
             "name": "Multiplication of 4 by 2",
             "result": "The result is 8",
-            "subTracks": [
+            "subTraces": [
                 {
                     "name": "Addition of 0 and 4",
                     "result": "The result is 4"
@@ -133,7 +133,7 @@ Output:
         {
             "name": "Multiplication of 8 by 2",
             "result": "The result is 16",
-            "subTracks": [
+            "subTraces": [
                 {
                     "name": "Addition of 0 and 8",
                     "result": "The result is 8"
