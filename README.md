@@ -22,7 +22,7 @@ use ExecutionTracker/Tracker;
 function power($base, $exponent)
 {
 
-    $track = ExecutionTracker::track("Exponentiation of $base to the power of $exponent");
+    $trace = Tracker::track("Exponentiation of $base to the power of $exponent");
 
     $result = 1;
 
@@ -30,7 +30,7 @@ function power($base, $exponent)
         $result = multiply($result, $base);
     }
 
-    $track->end("The result is $result");
+    $trace->end("The result is $result");
 
     return $result;
 
@@ -39,7 +39,7 @@ function power($base, $exponent)
 function multiply($factor1, $factor2)
 {
 
-    $track = ExecutionTracker::track(
+    $trace = Tracker::track(
         "Multiplication of $factor1 by $factor2"
     );
 
@@ -49,7 +49,7 @@ function multiply($factor1, $factor2)
         $result = add($result, $factor1);
     }
 
-    $track->end("The result is $result");
+    $trace->end("The result is $result");
 
     return $result;
 
@@ -58,7 +58,7 @@ function multiply($factor1, $factor2)
 function add($addend1, $addend2)
 {
 
-    $track = ExecutionTracker::track(
+    $trace = Tracker::track(
         "Addition of $addend1 and $addend2
     ");
 
@@ -66,7 +66,7 @@ function add($addend1, $addend2)
 
     usleep(200000);
 
-    $track->end("The result is $result");
+    $trace->end("The result is $result");
 
     return $result;
 
@@ -74,7 +74,7 @@ function add($addend1, $addend2)
 
 power(2, 4);
 
-$mainTrack = ExecutionTracker::getMainTrack();
+$mainTrack = Tracker::getMainTrack();
 
 echo $mainTrack->asJsonReduced();
 ```
