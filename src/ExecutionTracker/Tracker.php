@@ -26,6 +26,10 @@ class Tracker
 
         $trace = new Trace($name);
 
+        if(!self::$enabled) {
+            return $trace;
+        }
+
         if (!self::$mainTrace) {
             self::$mainTrace = $trace;
         }
@@ -34,10 +38,6 @@ class Tracker
 
         while ($parentTrace && $parentTrace->isFinished()) {
             $parentTrace = self::$traces[array_search($parentTrace, self::$traces) - 1];
-        }
-
-        if(!self::$enabled) {
-            return $trace;
         }
 
         if ($parentTrace) {
