@@ -13,6 +13,9 @@ class Tracker
     /** @var Trace[] */
     private static $traces = [];
 
+    /** @var bool */
+    private static $enabled = true;
+
     /**
      * @param string $name
      * 
@@ -31,6 +34,10 @@ class Tracker
 
         while ($parentTrace && $parentTrace->isFinished()) {
             $parentTrace = self::$traces[array_search($parentTrace, self::$traces) - 1];
+        }
+
+        if(!self::$enabled) {
+            return $trace;
         }
 
         if ($parentTrace) {
@@ -65,6 +72,20 @@ class Tracker
     public static function getCurrentTrace()
     {
         return end(self::$traces);
+    }
+
+    /**
+     * Disable the tracker
+     */
+    public static function enable() {
+        self::$enabled = true;
+    }
+
+    /**
+     * Enable the tracker
+     */
+    public static function disable() {
+        self::$enabled = false;
     }
 
 }

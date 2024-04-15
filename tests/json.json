@@ -1,50 +1,20 @@
 {
     "name": "Exponentiation of 2 to the power of 3\r\n    ",
     "result": "The result is 8",
-    "startTime": 1707845800.987073,
-    "endTime": 1707845802.207202,
+    "startTime": 1713197551.979474,
+    "endTime": 1713197553.202786,
     "subTraces": [
         {
             "name": "Multiplication of 1 by 2\r\n    ",
-            "result": "The result is 2",
-            "subTraces": [
-                {
-                    "name": "Addition of 0 and 1",
-                    "result": "The result is 1"
-                },
-                {
-                    "name": "Addition of 1 and 1",
-                    "result": "The result is 2"
-                }
-            ]
+            "result": "The result is 2"
         },
         {
             "name": "Multiplication of 2 by 2\r\n    ",
-            "result": "The result is 4",
-            "subTraces": [
-                {
-                    "name": "Addition of 0 and 2",
-                    "result": "The result is 2"
-                },
-                {
-                    "name": "Addition of 2 and 2",
-                    "result": "The result is 4"
-                }
-            ]
+            "result": "The result is 4"
         },
         {
             "name": "Multiplication of 4 by 2\r\n    ",
-            "result": "The result is 8",
-            "subTraces": [
-                {
-                    "name": "Addition of 0 and 4",
-                    "result": "The result is 4"
-                },
-                {
-                    "name": "Addition of 4 and 4",
-                    "result": "The result is 8"
-                }
-            ]
+            "result": "The result is 8"
         }
     ]
 }
