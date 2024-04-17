@@ -107,19 +107,6 @@ $html = $trace->result()->asHtml();
 
 You can also get the result with different options:
 
-- [PHP Execution Tracker](#php-execution-tracker)
-  - [Usage](#usage)
-    - [Result formats](#result-formats)
-      - [Array](#array)
-      - [JSON](#json)
-      - [HTML](#html)
-    - [Result options](#result-options)
-      - [Reduced](#reduced)
-      - [With durations](#with-durations)
-      - [With human readable times](#with-human-readable-times)
-    - [Hiding traces](#hiding-traces)
-  - [License](#license)
-
 #### Reduced
 
 Get the result with a reduced version of the trace. This will
