@@ -19,12 +19,6 @@ class Trace
     /** @var float */
     public $endTime = 0;
 
-    /** @var bool */
-    public $errorOccurred = false;
-
-    /** @var bool */
-    public $warningOccurred = false;
-
     /** @var string[] */
     public $errors = [];
 
@@ -49,7 +43,6 @@ class Trace
      */
     public function error($error)
     {
-        $this->errorOccurred = true;
         $this->errors[] = $error;
     }
 
@@ -58,7 +51,6 @@ class Trace
      */
     public function warning($warning)
     {
-        $this->warningOccurred = true;
         $this->warnings[] = $warning;
     }
 

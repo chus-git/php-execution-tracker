@@ -46,8 +46,6 @@ class Result {
             "result" => $trace->result,
             "startTime" => $trace->startTime,
             "endTime" => $trace->endTime,
-            "errorOccurred" => $trace->errorOccurred,
-            "warningOccurred" => $trace->warningOccurred,
             "errors" => $trace->errors,
             "warnings" => $trace->warnings,
             "logs" => $trace->logs,
@@ -74,8 +72,64 @@ class Result {
         return $resultArray;
     }
 
-    public function asJson() {
-        return json_encode($this->asArray());
+    public function asJson(int $depth = 512) {
+        return json_encode($this->asArray(), 0, $depth);
+    }
+
+    public function asHtml() {
+        $options = $this->options;
+        $trace = $this->trace;
+
+        $resultHtml = "<div class='trace'>";
+        $resultHtml .= "<h3>{$trace->name}</h3>";
+        $resultHtml .= "<p><strong>Result:</strong> {$trace->result}</p>";
+        $resultHtml .= "<p><strong>Start time:</strong> " . date("Y-m-d H:i:s", $trace->startTime
+        ) . "</p>";
+        $resultHtml .= "<p><strong>End time:</strong> " . date("Y-m-d H:i:s", $trace->endTime) . "</p>";
+
+        if ($options[self::OPTION_WITH_DURATION]) {
+            $resultHtml .= "<p><strong>Duration:</strong> " . $this->calculateDuration($trace->startTime, $trace->endTime) . "s</p>";
+        }
+
+        if ($trace->errors) {
+            $resultHtml .= "<p><strong>Errors:</strong></p>";
+            $resultHtml .= "<ul>";
+            foreach ($trace->errors as $error) {
+                $resultHtml .= "<li>$error</li>";
+            }
+            $resultHtml .= "</ul>";
+        }
+
+        if ($trace->warnings) {
+            $resultHtml .= "<p><strong>Warnings:</strong></p>";
+            $resultHtml .= "<ul>";
+            foreach ($trace->warnings as $warning) {
+                $resultHtml .= "<li>$warning</li>";
+            }
+            $resultHtml .= "</ul>";
+        }
+
+        if ($trace->logs) {
+            $resultHtml .= "<p><strong>Logs:</strong></p>";
+            $resultHtml .= "<ul>";
+            foreach ($trace->logs as $log) {
+                $resultHtml .= "<li>$log</li>";
+            }
+            $resultHtml .= "</ul>";
+        }
+
+        if ($trace->subTraces) {
+            $resultHtml .= "<p><strong>Sub traces:</strong></p>";
+            $resultHtml .= "<ul>";
+            foreach ($trace->subTraces as $subTrace) {
+                $resultHtml .= $subTrace->result($options)->asHtml();
+            }
+            $resultHtml .= "</ul>";
+        }
+
+        $resultHtml .= "</div>";
+
+        return $resultHtml;
     }
 
     /**
