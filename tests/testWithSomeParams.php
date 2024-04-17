@@ -31,13 +31,9 @@ function multiply($factor1, $factor2)
 
     $result = 0;
 
-    Tracker::disable();
-
     for ($i = 0; $i < $factor2; $i++) {
         $result = add($result, $factor1);
     }
-
-    Tracker::enable();
 
     $trace->end("The result is $result");
 
@@ -53,7 +49,7 @@ function add($addend1, $addend2)
 
     $result = $addend1 + $addend2;
 
-    // Sleep 0.2s to show how result()->reduced()->withHumanTimes()->asJson(); works
+    // Sleep 0.2s to show how reduced() option works works
     usleep(200000);
 
     $trace->end("The result is $result");

@@ -49,7 +49,7 @@ function add($addend1, $addend2)
 
     $result = $addend1 + $addend2;
 
-    // Sleep 0.2s to show how asJsonReduced() works
+    // Sleep 0.2s to show how reduced() option works works
     usleep(200000);
 
     $trace->end("The result is $result");
@@ -61,4 +61,4 @@ power(2, 3);
 
 $mainTrack = Tracker::getMainTrace();
 
-echo $mainTrack->asJsonReduced();
+echo $mainTrack->result()->asJson();

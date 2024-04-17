@@ -2,6 +2,8 @@
 
 namespace ExecutionTracker;
 
+include_once "Result.php";
+
 class Trace
 {
 
@@ -107,64 +109,17 @@ class Trace
         return $this->endTime > 0;
     }
 
-    private function clone()
-    {
-        $clone = new Trace($this->name);
-        $clone->result = $this->result;
-        $clone->startTime = $this->startTime;
-        $clone->endTime = $this->endTime;
-        $clone->errorOccurred = $this->errorOccurred;
-        $clone->warningOccurred = $this->warningOccurred;
-        $clone->errors = $this->errors;
-        $clone->warnings = $this->warnings;
-        $clone->logs = $this->logs;
-        $clone->subTraces = $this->subTraces;
-        return $clone;
-    }
-
-    public function asJson()
-    {
-        return json_encode($this);
-    }
-
-    public function asJsonReduced()
-    {
-        return json_encode($this->asReduced());
-    }
-
-    public function asReduced()
-    {
-
-        $clone = $this->clone()->asArray();
-
-        // Unset startTime and endTime if the difference is less than 1 second
-        
-        $timeDiff = $clone["endTime"] - $clone["startTime"];
-        
-        if ($timeDiff < 1) {
-            unset($clone["startTime"]);
-            unset($clone["endTime"]);
-        }
-
-        if($clone["subTraces"])
-            foreach ($clone["subTraces"] as $subTraceKey => $subTrace) {
-                $clone["subTraces"][$subTraceKey] = $subTrace->asReduced();
-            }
-
-        foreach ($clone as $key => $value) {
-
-            if (!$value) {
-                unset($clone[$key]);
-            }
-
-        }
-
-        return $clone;
-    }
-
-    public function asArray()
-    {
-        return get_object_vars($this);
+    /**
+     * Obtain the result of the trace.
+     *
+     * @param string[] $options Options to customize the behavior.
+     *                       Available options are:
+     *                       - 'reduced': If set to true, reduces the result by removing irrelevant data.
+     *                       - 'withHumanTimes': If set to true, displays times in human-readable format.
+     *                       - 'withDuration': If set to true, includes the duration between startTime and endTime.
+     */
+    public function result($options = []) {
+        return new Result($this, $options);
     }
 
 }

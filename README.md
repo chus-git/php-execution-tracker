@@ -76,7 +76,7 @@ power(2, 4);
 
 $mainTrace = Tracker::getMainTrace();
 
-echo $mainTrace->asJsonReduced();
+echo $mainTrace->result()->reduced()->withHumanTimes()->asJson();
 ```
 
 Output:
