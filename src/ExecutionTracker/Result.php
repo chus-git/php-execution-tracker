@@ -2,7 +2,8 @@
 
 namespace ExecutionTracker;
 
-class Result {
+class Result
+{
 
     private const OPTION_REDUCED = "reduced";
     private const OPTION_WITH_HUMAN_TIMES = "withHumanTimes";
@@ -37,7 +38,8 @@ class Result {
      * Result output functions
      */
 
-    public function asArray() {
+    public function asArray()
+    {
         $options = $this->options;
         $trace = $this->trace;
 
@@ -50,9 +52,12 @@ class Result {
             "warnings" => $trace->warnings,
             "logs" => $trace->logs,
             "duration" => null,
-            "subTraces" => array_map(function($subTrace) use ($options) {
-                return $subTrace->result($options)->asArray();
-            }, $trace->subTraces)
+            "subTraces" => array_reduce($trace->subTraces, function ($carry, $subTrace) use ($options) {
+                if (!$subTrace->hidden) {
+                    $carry[] = $subTrace->result($options)->asArray();
+                }
+                return $carry;
+            }, [])
         ];
 
         if ($options[self::OPTION_WITH_DURATION]) {
@@ -72,18 +77,22 @@ class Result {
         return $resultArray;
     }
 
-    public function asJson(int $depth = 512) {
+    public function asJson(int $depth = 512)
+    {
         return json_encode($this->asArray(), 0, $depth);
     }
 
-    public function asHtml() {
+    public function asHtml()
+    {
         $options = $this->options;
         $trace = $this->trace;
 
         $resultHtml = "<div class='trace'>";
         $resultHtml .= "<h3>{$trace->name}</h3>";
         $resultHtml .= "<p><strong>Result:</strong> {$trace->result}</p>";
-        $resultHtml .= "<p><strong>Start time:</strong> " . date("Y-m-d H:i:s", $trace->startTime
+        $resultHtml .= "<p><strong>Start time:</strong> " . date(
+            "Y-m-d H:i:s",
+            $trace->startTime
         ) . "</p>";
         $resultHtml .= "<p><strong>End time:</strong> " . date("Y-m-d H:i:s", $trace->endTime) . "</p>";
 
@@ -136,7 +145,8 @@ class Result {
      * Private functions
      */
 
-    private function reduceResult($array) {
+    private function reduceResult($array)
+    {
 
         $timeDiff = $array["endTime"] - $array["startTime"];
 
@@ -149,23 +159,25 @@ class Result {
             unset($array["duration"]);
         }
 
-        return array_filter($array, function($value) {
+        return array_filter($array, function ($value) {
             return $value != false;
         });
     }
 
-    private function calculateDuration($startTime, $endTime) {
+    private function calculateDuration($startTime, $endTime)
+    {
         return $endTime - $startTime;
     }
 
-    private function humanizeTimes($array) {
+    private function humanizeTimes($array)
+    {
 
-        if(isset($array["startTime"]) && isset($array["endTime"])) {
+        if (isset($array["startTime"]) && isset($array["endTime"])) {
             $array["startTime"] = date("Y-m-d H:i:s", $array["startTime"]);
             $array["endTime"] = date("Y-m-d H:i:s", $array["endTime"]);
         }
 
-        if(isset($array["duration"])) {
+        if (isset($array["duration"])) {
             $duration = $array["duration"];
             $hours = floor($duration / 3600);
             $minutes = floor(($duration / 60) % 60);
@@ -175,5 +187,4 @@ class Result {
 
         return $array;
     }
-    
 }

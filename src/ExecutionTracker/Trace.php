@@ -31,6 +31,9 @@ class Trace
     /** @var Trace[] */
     public $subTraces = [];
 
+    /** @var bool */
+    public $hidden = false;
+
     public function __construct($name)
     {
 
@@ -112,6 +115,11 @@ class Trace
      */
     public function result($options = []) {
         return new Result($this, $options);
+    }
+
+    public function hide()
+    {
+        $this->hidden = true;
     }
 
 }

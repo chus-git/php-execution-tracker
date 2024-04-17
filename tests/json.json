@@ -1,4 +1,15 @@
 {
-    "name": "Calculate 3 ^ 3",
-    "result": "Result: 27"
+    "name": "Wait 1 second",
+    "result": "Waited 1 second",
+    "startTime": "2024-04-17 21:30:55",
+    "endTime": "2024-04-17 21:30:56",
+    "duration": "1s"
+}
+
+{
+    "name": "Wait 2 seconds",
+    "result": "Waited 2 seconds",
+    "startTime": "2024-04-17 21:30:56",
+    "endTime": "2024-04-17 21:30:58",
+    "duration": "2s"
 }

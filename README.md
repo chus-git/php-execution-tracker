@@ -352,6 +352,62 @@ Output:
 }
 ```
 
+### Clearing the tracker
+
+You can clear the tracker to remove all the traces and reset it.
+
+```php
+$trace = Tracker::track("Wait 1 second");
+sleep(1);
+$trace->end("Waited 1 second");
+echo $trace->result(['reduced' => true, 'withHumanTimes' => true, 'withDuration' => true])->asJson();
+
+Tracker::clear();
+
+$trace = Tracker::track("Wait 2 seconds");
+sleep(2);
+$trace->end("Waited 2 seconds");
+echo $trace->result(['reduced' => true, 'withHumanTimes' => true, 'withDuration' => true])->asJson();
+```
+
+Output:
+
+```json
+{
+    "name": "Wait 1 second",
+    "result": "Waited 1 second",
+    "startTime": "2024-04-17 21:30:55",
+    "endTime": "2024-04-17 21:30:56",
+    "duration": "1s"
+}
+
+{
+    "name": "Wait 2 seconds",
+    "result": "Waited 2 seconds",
+    "startTime": "2024-04-17 21:30:56",
+    "endTime": "2024-04-17 21:30:58",
+    "duration": "2s"
+}
+```
+
+You can also hide a unique trace:
+
+```php
+$trace1 = Tracker::track("Wait 1 second");
+sleep(1);
+
+$trace2 = Tracker::track("Wait 1 second");
+sleep(1);
+
+$trace2->end("Waited 1 second")->hide(); // Or $trace2->end(); then $trace2->hide();
+
+$trace1->end("Waited 1 second");
+
+echo $trace1->result(['reduced' => true, 'withHumanTimes' => true, 'withDuration' => true])->asJson();
+```
+
+> Is better to use Tracker::disable() and Tracker::enable() to disable and enable the tracker, respectively, instead of hiding traces, due to the traces will be still stored in memory.
+
 ## License
 
 This library is licensed under the MIT license. See the [LICENSE](MIT-LICENSE) file for more information.
