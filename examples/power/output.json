@@ -1,0 +1,152 @@
+{
+    "name": "Powering 2 to 10",
+    "result": "The result obtained is 1024",
+    "subTraces": [
+        {
+            "name": "Power 2 ^ 10",
+            "result": "Obtained 1024",
+            "subTraces": [
+                {
+                    "name": "Multiply 1 * 2",
+                    "result": "Obtained 2",
+                    "subTraces": [
+                        {
+                            "name": "Sum 0 + 1",
+                            "result": "Obtained 1"
+                        },
+                        {
+                            "name": "Sum 1 + 1",
+                            "result": "Obtained 2"
+                        }
+                    ]
+                },
+                {
+                    "name": "Multiply 2 * 2",
+                    "result": "Obtained 4",
+                    "subTraces": [
+                        {
+                            "name": "Sum 0 + 2",
+                            "result": "Obtained 2"
+                        },
+                        {
+                            "name": "Sum 2 + 2",
+                            "result": "Obtained 4"
+                        }
+                    ]
+                },
+                {
+                    "name": "Multiply 4 * 2",
+                    "result": "Obtained 8",
+                    "subTraces": [
+                        {
+                            "name": "Sum 0 + 4",
+                            "result": "Obtained 4"
+                        },
+                        {
+                            "name": "Sum 4 + 4",
+                            "result": "Obtained 8"
+                        }
+                    ]
+                },
+                {
+                    "name": "Multiply 8 * 2",
+                    "result": "Obtained 16",
+                    "subTraces": [
+                        {
+                            "name": "Sum 0 + 8",
+                            "result": "Obtained 8"
+                        },
+                        {
+                            "name": "Sum 8 + 8",
+                            "result": "Obtained 16"
+                        }
+                    ]
+                },
+                {
+                    "name": "Multiply 16 * 2",
+                    "result": "Obtained 32",
+                    "subTraces": [
+                        {
+                            "name": "Sum 0 + 16",
+                            "result": "Obtained 16"
+                        },
+                        {
+                            "name": "Sum 16 + 16",
+                            "result": "Obtained 32"
+                        }
+                    ]
+                },
+                {
+                    "name": "Multiply 32 * 2",
+                    "result": "Obtained 64",
+                    "subTraces": [
+                        {
+                            "name": "Sum 0 + 32",
+                            "result": "Obtained 32"
+                        },
+                        {
+                            "name": "Sum 32 + 32",
+                            "result": "Obtained 64"
+                        }
+                    ]
+                },
+                {
+                    "name": "Multiply 64 * 2",
+                    "result": "Obtained 128",
+                    "subTraces": [
+                        {
+                            "name": "Sum 0 + 64",
+                            "result": "Obtained 64"
+                        },
+                        {
+                            "name": "Sum 64 + 64",
+                            "result": "Obtained 128"
+                        }
+                    ]
+                },
+                {
+                    "name": "Multiply 128 * 2",
+                    "result": "Obtained 256",
+                    "subTraces": [
+                        {
+                            "name": "Sum 0 + 128",
+                            "result": "Obtained 128"
+                        },
+                        {
+                            "name": "Sum 128 + 128",
+                            "result": "Obtained 256"
+                        }
+                    ]
+                },
+                {
+                    "name": "Multiply 256 * 2",
+                    "result": "Obtained 512",
+                    "subTraces": [
+                        {
+                            "name": "Sum 0 + 256",
+                            "result": "Obtained 256"
+                        },
+                        {
+                            "name": "Sum 256 + 256",
+                            "result": "Obtained 512"
+                        }
+                    ]
+                },
+                {
+                    "name": "Multiply 512 * 2",
+                    "result": "Obtained 1024",
+                    "subTraces": [
+                        {
+                            "name": "Sum 0 + 512",
+                            "result": "Obtained 512"
+                        },
+                        {
+                            "name": "Sum 512 + 512",
+                            "result": "Obtained 1024"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

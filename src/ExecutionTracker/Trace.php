@@ -40,6 +40,7 @@ class Trace
         $this->name = $name;
         $this->parentTrace = $parentTrace;
         $this->startTime = microtime(true);
+
     }
 
     /**

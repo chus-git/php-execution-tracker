@@ -28,12 +28,20 @@ class Tracker
             return new Trace($name);
         }
 
-        $trace = new Trace($name, self::$currentTrace);
+        // Iterate current trace and his parents to find the last trace that is not finished
+        $parent = self::$currentTrace;
+        while ($parent && $parent->isFinished()) {
+            $parent = $parent->parentTrace;
+        }
+
+        $trace = new Trace($name, $parent);
 
         if (!self::$mainTrace) {
             self::$mainTrace = $trace;
             self::$currentTrace = $trace;
         }
+
+        self::$currentTrace = $trace;
 
         return $trace;
     }
@@ -78,4 +86,5 @@ class Tracker
     {
         self::$enabled = false;
     }
+
 }
