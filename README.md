@@ -15,6 +15,10 @@ A PHP library to track the execution of a process. It allows you to track the ti
       - [With durations](#with-durations)
       - [With human readable times](#with-human-readable-times)
     - [Hiding traces](#hiding-traces)
+      - [Disabling the tracker](#disabling-the-tracker)
+      - [Using the hide method](#using-the-hide-method)
+    - [Clearing the tracker](#clearing-the-tracker)
+    - [Tracker static methods](#tracker-static-methods)
   - [License](#license)
 
 ## Usage
