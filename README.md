@@ -144,7 +144,7 @@ duration of each trace to the result.
 
 ```php
 $array = $trace->result([
-    'withDurations' => true
+    'withDuration' => true
 ])->asJson();
 ```
 
