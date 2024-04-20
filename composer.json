@@ -10,6 +10,10 @@
         }
     ],
     "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "chus/php-execution-tracker": "*"
+    },
     "autoload": {
         "psr-0": {
             "ExecutionTracker": "src/"

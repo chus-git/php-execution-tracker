@@ -48,16 +48,13 @@ class Result
             "result" => $trace->result,
             "startTime" => $trace->startTime,
             "endTime" => $trace->endTime,
-            "errors" => $trace->errors,
-            "warnings" => $trace->warnings,
             "logs" => $trace->logs,
+            "warnings" => $trace->warnings,
+            "errors" => $trace->errors,
             "duration" => null,
-            "subTraces" => array_reduce($trace->subTraces, function ($carry, $subTrace) use ($options) {
-                if (!$subTrace->hidden) {
-                    $carry[] = $subTrace->result($options)->asArray();
-                }
-                return $carry;
-            }, [])
+            "subTraces" => array_map(function ($subTrace) use ($options) {
+                return $subTrace->result($options)->asArray();
+            }, $trace->subTraces)
         ];
 
         if ($options[self::OPTION_WITH_DURATION]) {

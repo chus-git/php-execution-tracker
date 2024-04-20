@@ -10,8 +10,8 @@ class Tracker
     /** @var Trace */
     private static $mainTrace;
 
-    /** @var Trace[] */
-    private static $traces = [];
+    /** @var Trace */
+    private static $currentTrace;
 
     /** @var bool */
     private static $enabled = true;
@@ -24,27 +24,16 @@ class Tracker
     public static function track($name)
     {
 
-        $trace = new Trace($name);
-
         if(!self::$enabled) {
-            return $trace;
+            return new Trace($name);
         }
+
+        $trace = new Trace($name, self::$currentTrace);
 
         if (!self::$mainTrace) {
             self::$mainTrace = $trace;
+            self::$currentTrace = $trace;
         }
-
-        $parentTrace = end(self::$traces);
-
-        while ($parentTrace && $parentTrace->isFinished()) {
-            $parentTrace = self::$traces[array_search($parentTrace, self::$traces) - 1];
-        }
-
-        if ($parentTrace) {
-            $parentTrace->subTraces[] = $trace;
-        }
-
-        self::$traces[] = $trace;
 
         return $trace;
     }
@@ -63,7 +52,7 @@ class Tracker
     public static function clear()
     {
         self::$mainTrace = null;
-        self::$traces = [];
+        self::$currentTrace = null;
     }
 
     /**
@@ -71,7 +60,7 @@ class Tracker
      */
     public static function getCurrentTrace()
     {
-        return end(self::$traces);
+        return self::$currentTrace;
     }
 
     /**

@@ -28,17 +28,19 @@ class Trace
     /** @var string[] */
     public $logs = [];
 
+    /** @var Trace */
+    public $parentTrace = null;
+
     /** @var Trace[] */
     public $subTraces = [];
 
-    /** @var bool */
-    public $hidden = false;
-
-    public function __construct($name)
+    public function __construct($name, $parentTrace = null)
     {
 
         $this->name = $name;
+        $this->parentTrace = $parentTrace;
         $this->startTime = microtime(true);
+
     }
 
     /**
@@ -59,11 +61,17 @@ class Trace
 
     /**
      * @param string $result
+     * @param bool $hide
      */
-    public function end($result)
+    public function end($result, $hide = false)
     {
         $this->result = $result;
         $this->endTime = microtime(true);
+
+        if (!$hide && $this->parentTrace) {
+            $this->parentTrace->subTraces[] = $this;
+        }
+
         return $this;
     }
 
@@ -117,9 +125,34 @@ class Trace
         return new Result($this, $options);
     }
 
-    public function hide()
-    {
-        $this->hidden = true;
+    /**
+     * Hide the trace. Note: Cannot hide the main trace.
+     * 
+     * @return bool True if the trace was hidden, false otherwise.
+     */
+
+    public function hide() {
+
+        if (!$this->parentTrace) {
+            return false;
+        }
+
+        $this->parentTrace->subTraces = array_filter($this->parentTrace->subTraces, function($subTrace) {
+            return $subTrace !== $this;
+        });
+
+        return true;
+
+    }
+    
+    /**
+     * Obtain the total number of subtraces and subtraces of subtraces.
+     */
+
+    public function totalSubTraces() {
+        return count($this->subTraces) + array_reduce($this->subTraces, function($carry, $subTrace) {
+            return $carry + $subTrace->totalSubTraces();
+        }, 0);
     }
 
 }
