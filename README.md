@@ -206,7 +206,7 @@ Having this code:
 function sum($a, $b) {
     $trace = Tracker::track("Sum $a + $b");
     $result = $a + $b;
-    $trace->end("Result: $result");
+    $trace->end("Obtained $result");
     return $a + $b;
 }
 
@@ -216,7 +216,7 @@ function multiply($a, $b) {
     for ($i = 0; $i < $b; $i++) {
         $result = sum($result, $a);
     }
-    $trace->end("Result: $result");
+    $trace->end("Obtained $result");
     return $a * $b;
 }
 
@@ -226,7 +226,7 @@ function power($a, $b) {
     for ($i = 0; $i < $b; $i++) {
         $result = multiply($result, $a);
     }
-    $trace->end("Result: $result");
+    $trace->end("Obtained $result");
     return $result;
 }
 ```
@@ -236,7 +236,7 @@ Without disabling the tracker:
 ```php
 $trace = Tracker::track("Calculate 3 ^ 3");
 $result = power(3, 3);
-$trace->end("Result: $result");
+$trace->end("Obtained $result");
 
 echo $trace->result([
     'reduced' => true
@@ -248,63 +248,63 @@ Output:
 ```json
 {
     "name": "Calculate 3 ^ 3",
-    "result": "Result: 27",
+    "result": "Obtained 27",
     "subTraces": [
         {
             "name": "Power 3 ^ 3",
-            "result": "Result: 27",
+            "result": "Obtained 27",
             "subTraces": [
                 {
                     "name": "Multiply 1 * 3",
-                    "result": "Result: 3",
+                    "result": "Obtained 3",
                     "subTraces": [
                         {
                             "name": "Sum 0 + 1",
-                            "result": "Result: 1"
+                            "result": "Obtained 1"
                         },
                         {
                             "name": "Sum 1 + 1",
-                            "result": "Result: 2"
+                            "result": "Obtained 2"
                         },
                         {
                             "name": "Sum 2 + 1",
-                            "result": "Result: 3"
+                            "result": "Obtained 3"
                         }
                     ]
                 },
                 {
                     "name": "Multiply 3 * 3",
-                    "result": "Result: 9",
+                    "result": "Obtained 9",
                     "subTraces": [
                         {
                             "name": "Sum 0 + 3",
-                            "result": "Result: 3"
+                            "result": "Obtained 3"
                         },
                         {
                             "name": "Sum 3 + 3",
-                            "result": "Result: 6"
+                            "result": "Obtained 6"
                         },
                         {
                             "name": "Sum 6 + 3",
-                            "result": "Result: 9"
+                            "result": "Obtained 9"
                         }
                     ]
                 },
                 {
                     "name": "Multiply 9 * 3",
-                    "result": "Result: 27",
+                    "result": "Obtained 27",
                     "subTraces": [
                         {
                             "name": "Sum 0 + 9",
-                            "result": "Result: 9"
+                            "result": "Obtained 9"
                         },
                         {
                             "name": "Sum 9 + 9",
-                            "result": "Result: 18"
+                            "result": "Obtained 18"
                         },
                         {
                             "name": "Sum 18 + 9",
-                            "result": "Result: 27"
+                            "result": "Obtained 27"
                         }
                     ]
                 }
@@ -323,7 +323,7 @@ Tracker::disable();
 $result = power(3, 3);
 Tracker::enable();
 
-$trace->end("Result: $result");
+$trace->end("Obtained $result");
 
 echo $trace->result([
     'reduced' => true
@@ -335,7 +335,7 @@ Output:
 ```json
 {
     "name": "Calculate 3 ^ 3",
-    "result": "Result: 27"
+    "result": "Obtained 27"
 }
 ```
 
