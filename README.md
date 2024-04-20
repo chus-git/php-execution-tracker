@@ -63,18 +63,18 @@ Output:
 
 ```json
 {
-    "name": "Count the cats in the array",
-    "result": "3 cats found in the array",
-    "startTime": 1713383993.159653,
-    "endTime": 1713383993.159678,
-    "errors": [],
-    "warnings": [],
-    "logs": [
-        "Cat found! We have 1 cats so far",
-        "Cat found! We have 2 cats so far",
-        "Cat found! We have 3 cats so far"
-    ],
-    "subTraces": []
+  "name": "Count the cats in the array",
+  "result": "3 cats found in the array",
+  "startTime": 1713383993.159653,
+  "endTime": 1713383993.159678,
+  "errors": [],
+  "warnings": [],
+  "logs": [
+    "Cat found! We have 1 cats so far",
+    "Cat found! We have 2 cats so far",
+    "Cat found! We have 3 cats so far"
+  ],
+  "subTraces": []
 }
 ```
 
@@ -115,7 +115,7 @@ Start and end times will be removed if the duration is minor than 1 second.
 
 ```php
 $array = $trace->result([
-    'reduced' => true	
+    'reduced' => true
 ])->asJson();
 ```
 
@@ -123,13 +123,13 @@ Output:
 
 ```json
 {
-    "name": "Count the cats in the array",
-    "result": "3 cats found in the array",
-    "logs": [
-        "Cat found! We have 1 cats so far",
-        "Cat found! We have 2 cats so far",
-        "Cat found! We have 3 cats so far"
-    ]
+  "name": "Count the cats in the array",
+  "result": "3 cats found in the array",
+  "logs": [
+    "Cat found! We have 1 cats so far",
+    "Cat found! We have 2 cats so far",
+    "Cat found! We have 3 cats so far"
+  ]
 }
 ```
 
@@ -148,19 +148,19 @@ Output:
 
 ```json
 {
-    "name": "Count the cats in the array",
-    "result": "3 cats found in the array",
-    "startTime": 1713383993.159653,
-    "endTime": 1713383993.159678,
-    "duration": 0.000025,
-    "errors": [],
-    "warnings": [],
-    "logs": [
-        "Cat found! We have 1 cats so far",
-        "Cat found! We have 2 cats so far",
-        "Cat found! We have 3 cats so far"
-    ],
-    "subTraces": []
+  "name": "Count the cats in the array",
+  "result": "3 cats found in the array",
+  "startTime": 1713383993.159653,
+  "endTime": 1713383993.159678,
+  "duration": 0.000025,
+  "errors": [],
+  "warnings": [],
+  "logs": [
+    "Cat found! We have 1 cats so far",
+    "Cat found! We have 2 cats so far",
+    "Cat found! We have 3 cats so far"
+  ],
+  "subTraces": []
 }
 ```
 
@@ -172,7 +172,7 @@ timestamps to human readable times.
 ```php
 $array = $trace->result([
     'withDuration' => true,
-    'withHumanTimes' => true	
+    'withHumanTimes' => true
 ])->asJson();
 ```
 
@@ -180,25 +180,29 @@ Output:
 
 ```json
 {
-    "name": "Count the cats in the array",
-    "result": "3 cats found in the array",
-    "startTime": "2024-12-06 12:26:33",
-    "endTime": "2024-12-06 12:26:34",
-    "duration": "0h 0min 1s",
-    "errors": [],
-    "warnings": [],
-    "logs": [
-        "Cat found! We have 1 cats so far",
-        "Cat found! We have 2 cats so far",
-        "Cat found! We have 3 cats so far"
-    ],
-    "subTraces": []
+  "name": "Count the cats in the array",
+  "result": "3 cats found in the array",
+  "startTime": "2024-12-06 12:26:33",
+  "endTime": "2024-12-06 12:26:34",
+  "duration": "0h 0min 1s",
+  "errors": [],
+  "warnings": [],
+  "logs": [
+    "Cat found! We have 1 cats so far",
+    "Cat found! We have 2 cats so far",
+    "Cat found! We have 3 cats so far"
+  ],
+  "subTraces": []
 }
 ```
 
 ### Hiding traces
 
-You can disable and enable the *Tracker* wethever you want. This will disable the tracking of the process and the creation of sub-traces.
+There are some cases where you want to hide a trace, for example, when you have a trace that you don't want to show in the result under some conditions.
+
+#### Disabling the tracker
+
+You can disable and enable the _Tracker_ wethever you want. This will disable the tracking of the process and the creation of sub-traces.
 
 Having this code:
 
@@ -247,70 +251,70 @@ Output:
 
 ```json
 {
-    "name": "Calculate 3 ^ 3",
-    "result": "Obtained 27",
-    "subTraces": [
+  "name": "Calculate 3 ^ 3",
+  "result": "Obtained 27",
+  "subTraces": [
+    {
+      "name": "Power 3 ^ 3",
+      "result": "Obtained 27",
+      "subTraces": [
         {
-            "name": "Power 3 ^ 3",
-            "result": "Obtained 27",
-            "subTraces": [
-                {
-                    "name": "Multiply 1 * 3",
-                    "result": "Obtained 3",
-                    "subTraces": [
-                        {
-                            "name": "Sum 0 + 1",
-                            "result": "Obtained 1"
-                        },
-                        {
-                            "name": "Sum 1 + 1",
-                            "result": "Obtained 2"
-                        },
-                        {
-                            "name": "Sum 2 + 1",
-                            "result": "Obtained 3"
-                        }
-                    ]
-                },
-                {
-                    "name": "Multiply 3 * 3",
-                    "result": "Obtained 9",
-                    "subTraces": [
-                        {
-                            "name": "Sum 0 + 3",
-                            "result": "Obtained 3"
-                        },
-                        {
-                            "name": "Sum 3 + 3",
-                            "result": "Obtained 6"
-                        },
-                        {
-                            "name": "Sum 6 + 3",
-                            "result": "Obtained 9"
-                        }
-                    ]
-                },
-                {
-                    "name": "Multiply 9 * 3",
-                    "result": "Obtained 27",
-                    "subTraces": [
-                        {
-                            "name": "Sum 0 + 9",
-                            "result": "Obtained 9"
-                        },
-                        {
-                            "name": "Sum 9 + 9",
-                            "result": "Obtained 18"
-                        },
-                        {
-                            "name": "Sum 18 + 9",
-                            "result": "Obtained 27"
-                        }
-                    ]
-                }
-            ]
+          "name": "Multiply 1 * 3",
+          "result": "Obtained 3",
+          "subTraces": [
+            {
+              "name": "Sum 0 + 1",
+              "result": "Obtained 1"
+            },
+            {
+              "name": "Sum 1 + 1",
+              "result": "Obtained 2"
+            },
+            {
+              "name": "Sum 2 + 1",
+              "result": "Obtained 3"
+            }
+          ]
+        },
+        {
+          "name": "Multiply 3 * 3",
+          "result": "Obtained 9",
+          "subTraces": [
+            {
+              "name": "Sum 0 + 3",
+              "result": "Obtained 3"
+            },
+            {
+              "name": "Sum 3 + 3",
+              "result": "Obtained 6"
+            },
+            {
+              "name": "Sum 6 + 3",
+              "result": "Obtained 9"
+            }
+          ]
+        },
+        {
+          "name": "Multiply 9 * 3",
+          "result": "Obtained 27",
+          "subTraces": [
+            {
+              "name": "Sum 0 + 9",
+              "result": "Obtained 9"
+            },
+            {
+              "name": "Sum 9 + 9",
+              "result": "Obtained 18"
+            },
+            {
+              "name": "Sum 18 + 9",
+              "result": "Obtained 27"
+            }
+          ]
         }
-    ]
+      ]
+    }
+  ]
 }
 ```
 
@@ -334,10 +338,28 @@ Output:
 
 ```json
 {
-    "name": "Calculate 3 ^ 3",
-    "result": "Obtained 27"
+  "name": "Calculate 3 ^ 3",
+  "result": "Obtained 27"
 }
 ```
+
+#### Using the hide method
+
+You can also hide a trace using the `hide` method:
+
+```php
+// Hiding a trace after ending it
+$trace->end("Something done!");
+$trace->hide();
+
+// Alternatively, you can hide the trace directly
+$trace->end("Something done!")->hide();
+
+// Or you can pass a boolean to the end method to hide the trace
+$trace->end("Something done!", true);
+```
+
+> In terms of performance, if you are going to call the "hide" method many times, is better to use Tracker::disable() and Tracker::enable() to disable and enable the tracker, respectively, instead of hiding traces.
 
 ### Clearing the tracker
 
@@ -347,27 +369,21 @@ You can clear the tracker to remove all the traces and reset it.
 $trace = Tracker::track("Wait 1 second");
 sleep(1);
 $trace->end("Waited 1 second");
-echo $trace->result(['reduced' => true, 'withHumanTimes' => true, 'withDuration' => true])->asJson();
 
 Tracker::clear();
 
 $trace = Tracker::track("Wait 2 seconds");
 sleep(2);
 $trace->end("Waited 2 seconds");
-echo $trace->result(['reduced' => true, 'withHumanTimes' => true, 'withDuration' => true])->asJson();
+
+$mainTrace = Tracker::getMainTrace();
+
+echo $mainTrace->result(['reduced' => true, 'withHumanTimes' => true, 'withDuration' => true])->asJson();
 ```
 
 Output:
 
 ```json
-{
-    "name": "Wait 1 second",
-    "result": "Waited 1 second",
-    "startTime": "2024-04-17 21:30:55",
-    "endTime": "2024-04-17 21:30:56",
-    "duration": "1s"
-}
-
 {
     "name": "Wait 2 seconds",
     "result": "Waited 2 seconds",
@@ -394,6 +410,17 @@ echo $trace1->result(['reduced' => true, 'withHumanTimes' => true, 'withDuration
 ```
 
 > Is better to use Tracker::disable() and Tracker::enable() to disable and enable the tracker, respectively, instead of hiding traces, due to the traces will be still stored in memory.
+
+### Tracker static methods
+
+You can use the following static methods to interact with the tracker:
+
+- `Tracker::track($name)`: Start tracking a process.
+- `Tracker::getCurrentTrace()` Get the current trace.
+- `Tracker::getMainTrace()`: Get the main trace.
+- `Tracker::clear()`: Clear the tracker.
+- `Tracker::disable()`: This will hide the traces created after calling this method until calling `Tracker::enable()`.
+- `Tracker::enable()`: This will enable the tracker.
 
 ## License
 
