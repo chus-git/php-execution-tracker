@@ -46,8 +46,8 @@ $cats = 0;
 foreach ($animals as $key => $animal) {
 
     if($animal === '🐱') {
-        $trace->log("Cat found! We have $cats cats so far");
         $cats++;
+        $trace->log("Cat found! We have $cats cats so far");
     }
 
 }
@@ -70,9 +70,9 @@ Output:
     "errors": [],
     "warnings": [],
     "logs": [
-        "Cat found! We have 0 cats so far",
         "Cat found! We have 1 cats so far",
-        "Cat found! We have 2 cats so far"
+        "Cat found! We have 2 cats so far",
+        "Cat found! We have 3 cats so far"
     ],
     "subTraces": []
 }
@@ -126,9 +126,9 @@ Output:
     "name": "Count the cats in the array",
     "result": "3 cats found in the array",
     "logs": [
-        "Cat found! We have 0 cats so far",
         "Cat found! We have 1 cats so far",
-        "Cat found! We have 2 cats so far"
+        "Cat found! We have 2 cats so far",
+        "Cat found! We have 3 cats so far"
     ]
 }
 ```
@@ -156,9 +156,9 @@ Output:
     "errors": [],
     "warnings": [],
     "logs": [
-        "Cat found! We have 0 cats so far",
         "Cat found! We have 1 cats so far",
-        "Cat found! We have 2 cats so far"
+        "Cat found! We have 2 cats so far",
+        "Cat found! We have 3 cats so far"
     ],
     "subTraces": []
 }
@@ -188,9 +188,9 @@ Output:
     "errors": [],
     "warnings": [],
     "logs": [
-        "Cat found! We have 0 cats so far",
         "Cat found! We have 1 cats so far",
-        "Cat found! We have 2 cats so far"
+        "Cat found! We have 2 cats so far",
+        "Cat found! We have 3 cats so far"
     ],
     "subTraces": []
 }
