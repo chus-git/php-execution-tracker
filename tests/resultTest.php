@@ -317,6 +317,5 @@ class ResultTest extends TestCase
 
         $this->assertJson($result);
         $this->assertEquals($expectedResult, $result);
-        
     }
 }

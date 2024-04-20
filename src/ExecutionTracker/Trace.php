@@ -40,7 +40,6 @@ class Trace
         $this->name = $name;
         $this->parentTrace = $parentTrace;
         $this->startTime = microtime(true);
-
     }
 
     /**
@@ -121,7 +120,8 @@ class Trace
      *                       - 'withHumanTimes': If set to true, displays times in human-readable format.
      *                       - 'withDuration': If set to true, includes the duration between startTime and endTime.
      */
-    public function result($options = []) {
+    public function result($options = [])
+    {
         return new Result($this, $options);
     }
 
@@ -131,28 +131,28 @@ class Trace
      * @return bool True if the trace was hidden, false otherwise.
      */
 
-    public function hide() {
+    public function hide()
+    {
 
         if (!$this->parentTrace) {
             return false;
         }
 
-        $this->parentTrace->subTraces = array_filter($this->parentTrace->subTraces, function($subTrace) {
+        $this->parentTrace->subTraces = array_filter($this->parentTrace->subTraces, function ($subTrace) {
             return $subTrace !== $this;
         });
 
         return true;
-
     }
-    
+
     /**
      * Obtain the total number of subtraces and subtraces of subtraces.
      */
 
-    public function totalSubTraces() {
-        return count($this->subTraces) + array_reduce($this->subTraces, function($carry, $subTrace) {
+    public function totalSubTraces()
+    {
+        return count($this->subTraces) + array_reduce($this->subTraces, function ($carry, $subTrace) {
             return $carry + $subTrace->totalSubTraces();
         }, 0);
     }
-
 }

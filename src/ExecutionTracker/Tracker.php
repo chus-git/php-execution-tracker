@@ -24,7 +24,7 @@ class Tracker
     public static function track($name)
     {
 
-        if(!self::$enabled) {
+        if (!self::$enabled) {
             return new Trace($name);
         }
 
@@ -66,15 +66,16 @@ class Tracker
     /**
      * Disable the tracker
      */
-    public static function enable() {
+    public static function enable()
+    {
         self::$enabled = true;
     }
 
     /**
      * Enable the tracker
      */
-    public static function disable() {
+    public static function disable()
+    {
         self::$enabled = false;
     }
-
 }
