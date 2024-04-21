@@ -33,7 +33,7 @@ function power($a, $b)
     return $result;
 }
 
-class ResultTest extends TestCase
+class Test extends TestCase
 {
     public function testCalculateTotalSubTraces()
     {
