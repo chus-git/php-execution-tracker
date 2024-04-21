@@ -426,6 +426,15 @@ You can use the following static methods to interact with the tracker:
 - `Tracker::disable()`: This will hide the traces created after calling this method until calling `Tracker::enable()`.
 - `Tracker::enable()`: This will enable the tracker.
 
+## Development
+
+To run the tests, you can use the following command:
+
+```bash
+composer update
+./vendor/bin/phpunit ./tests/test.php
+```
+
 ## License
 
 This library is licensed under the MIT license. See the [LICENSE](MIT-LICENSE) file for more information.

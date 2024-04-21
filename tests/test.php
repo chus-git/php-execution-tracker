@@ -307,10 +307,10 @@ class Test extends TestCase
         Tracker::clear();
 
         $trace = Tracker::track("Calculate 3 ^ 3");
-        power(3, 3);
-        $trace->end("Obtained 27");
+        $result = power(3, 3);
+        $trace->end("Obtained $result");
 
-        $expectedResult = '{"name":"Calculate 3 ^ 3","result":"Obtained 27","subTraces":[{"name":"Sum 0 + 1","result":"Obtained 1"},{"name":"Sum 1 + 1","result":"Obtained 2"},{"name":"Sum 2 + 1","result":"Obtained 3"},{"name":"Multiply 1 * 3","result":"Obtained 3"},{"name":"Sum 0 + 3","result":"Obtained 3"},{"name":"Sum 3 + 3","result":"Obtained 6"},{"name":"Sum 6 + 3","result":"Obtained 9"},{"name":"Multiply 3 * 3","result":"Obtained 9"},{"name":"Sum 0 + 9","result":"Obtained 9"},{"name":"Sum 9 + 9","result":"Obtained 18"},{"name":"Sum 18 + 9","result":"Obtained 27"},{"name":"Multiply 9 * 3","result":"Obtained 27"},{"name":"Power 3 ^ 3","result":"Obtained 27"}]}';
+        $expectedResult = '{"name":"Calculate 3 ^ 3","result":"Obtained 27","subTraces":[{"name":"Power 3 ^ 3","result":"Obtained 27","subTraces":[{"name":"Multiply 1 * 3","result":"Obtained 3","subTraces":[{"name":"Sum 0 + 1","result":"Obtained 1"},{"name":"Sum 1 + 1","result":"Obtained 2"},{"name":"Sum 2 + 1","result":"Obtained 3"}]},{"name":"Multiply 3 * 3","result":"Obtained 9","subTraces":[{"name":"Sum 0 + 3","result":"Obtained 3"},{"name":"Sum 3 + 3","result":"Obtained 6"},{"name":"Sum 6 + 3","result":"Obtained 9"}]},{"name":"Multiply 9 * 3","result":"Obtained 27","subTraces":[{"name":"Sum 0 + 9","result":"Obtained 9"},{"name":"Sum 9 + 9","result":"Obtained 18"},{"name":"Sum 18 + 9","result":"Obtained 27"}]}]}]}';
         $result = $trace->result([
             'reduced' => true
         ])->asJson();

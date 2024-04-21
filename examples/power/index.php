@@ -34,12 +34,9 @@ function power($a, $b)
     return $result;
 }
 
-$base = 2;
-$exponent = 10;
-
-$trace = Tracker::track("Powering $base to $exponent");
-$result = power($base, $exponent);
-$trace->end("The result obtained is $result");
+$trace = Tracker::track("Calculate 3 ^ 3");
+$result = power(3, 3);
+$trace->end("Obtained $result");
 
 echo $trace->result([
     'reduced' => true,
