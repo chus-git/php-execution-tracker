@@ -8,6 +8,7 @@ class Result
     private const OPTION_REDUCED = "reduced";
     private const OPTION_WITH_HUMAN_TIMES = "withHumanTimes";
     private const OPTION_WITH_DURATION = "withDuration";
+    private const OPTION_WITHOUT_TIMESTAMP = "withoutTimestamp";
 
     /** @var Trace */
     private $trace;
@@ -15,7 +16,8 @@ class Result
     private $options = [
         self::OPTION_REDUCED => false,
         self::OPTION_WITH_HUMAN_TIMES => false,
-        self::OPTION_WITH_DURATION => false
+        self::OPTION_WITH_DURATION => false,
+        self::OPTION_WITHOUT_TIMESTAMP => false
     ];
 
     /**
@@ -69,6 +71,11 @@ class Result
 
         if ($options[self::OPTION_WITH_HUMAN_TIMES]) {
             $resultArray = $this->humanizeTimes($resultArray);
+        }
+
+        if ($options[self::OPTION_WITHOUT_TIMESTAMP]) {
+            unset($resultArray["startTime"]);
+            unset($resultArray["endTime"]);
         }
 
         return $resultArray;

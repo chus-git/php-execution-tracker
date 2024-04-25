@@ -14,11 +14,13 @@ A PHP library to track the execution of a process. It allows you to track the ti
       - [Reduced](#reduced)
       - [With durations](#with-durations)
       - [With human readable times](#with-human-readable-times)
+      - [Without timestamps](#without-timestamps)
     - [Hiding traces](#hiding-traces)
       - [Disabling the tracker](#disabling-the-tracker)
       - [Using the hide method](#using-the-hide-method)
     - [Clearing the tracker](#clearing-the-tracker)
     - [Tracker static methods](#tracker-static-methods)
+  - [Development](#development)
   - [License](#license)
 
 ## Usage
@@ -197,6 +199,28 @@ Output:
     "Cat found! We have 3 cats so far"
   ],
   "subTraces": []
+}
+```
+
+#### Without timestamps
+
+Get the result without timestamps. This will remove the start and end times from the result.
+
+```php
+$array = $trace->result([
+    'withDuration' => true,
+    'withHumanTimes' => true,
+    'withoutTimestamps' => true
+])->asJson();
+```
+
+Output:
+
+```json
+{
+  "name": "Count the cats in the array",
+  "result": "3 cats found in the array",
+  "duration": "1s"
 }
 ```
 
