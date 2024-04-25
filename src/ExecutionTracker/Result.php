@@ -50,10 +50,10 @@ class Result
             "result" => $trace->result,
             "startTime" => $trace->startTime,
             "endTime" => $trace->endTime,
+            "duration" => null,
             "logs" => $trace->logs,
             "warnings" => $trace->warnings,
             "errors" => $trace->errors,
-            "duration" => null,
             "subTraces" => array_map(function ($subTrace) use ($options) {
                 return $subTrace->result($options)->asArray();
             }, $trace->subTraces)
